@@ -2,7 +2,6 @@ build
 bin
 *.idea
 *.iml
-lib/
 vendor/
 .bundle/
 build/
@@ -13,7 +12,6 @@ out/
 *.class
 *.ipr
 *.iws
-*.gem
 *.gemspec
 Gemfile*
 settings.gradle
