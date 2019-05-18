@@ -2,7 +2,6 @@ build
 bin
 *.idea
 *.iml
-lib/
 vendor/
 .bundle/
 build/
@@ -13,9 +12,7 @@ out/
 *.class
 *.ipr
 *.iws
-*.gem
 *.gemspec
 Gemfile.lock
 settings.gradle
 gradle.properties
-lib/logstash-filter-java_filter_example_jars.rb
