@@ -20,6 +20,23 @@ public class JavaFilterHueTest {
     @Test
     public void shouldSplitEachLightInEvent() {
         final String sourceField = "lights";
+        final Configuration config = new ConfigurationImpl(Collections.singletonMap("source", sourceField));
+        final Context context = new ContextImpl(null);
+        final JavaFilterHue filter = new JavaFilterHue("test-id", config, context);
+        final Event event = new org.logstash.Event(generateData(sourceField));
+        final TestMatchListener matchListener = new TestMatchListener();
+
+        final Collection<Event> results = filter.filter(Collections.singletonList(event), matchListener);
+
+        // Lights are split into several events
+        Assert.assertEquals(5, results.size());
+        Assert.assertEquals(5, matchListener.getMatchCount());
+
+        // Original timestamp is kept
+        Assert.assertTrue(results.stream().allMatch(e -> e.getEventTimestamp().equals(event.getEventTimestamp())));
+    }
+
+    private Map<String, Object> generateData(String sourceField) {
         final Map<String, Object> data = new HashMap<>();
         final Map<String, Object> foo = new HashMap<>();
         final Map<String, Object> data1 = new HashMap<>();
@@ -38,17 +55,7 @@ public class JavaFilterHueTest {
         foo.put("4", data4);
         foo.put("5", data5);
         data.put(sourceField, foo);
-
-        final Configuration config = new ConfigurationImpl(Collections.singletonMap("source", sourceField));
-        final Context context = new ContextImpl(null);
-        final JavaFilterHue filter = new JavaFilterHue("test-id", config, context);
-        final Event event = new org.logstash.Event(data);
-        final TestMatchListener matchListener = new TestMatchListener();
-
-        final Collection<Event> results = filter.filter(Collections.singletonList(event), matchListener);
-
-        Assert.assertEquals(5, results.size());
-        Assert.assertEquals(5, matchListener.getMatchCount());
+        return data;
     }
 }
 
