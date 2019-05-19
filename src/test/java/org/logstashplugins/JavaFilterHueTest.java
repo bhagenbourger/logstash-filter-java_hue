@@ -24,6 +24,7 @@ public class JavaFilterHueTest {
         final Context context = new ContextImpl(null);
         final JavaFilterHue filter = new JavaFilterHue("test-id", config, context);
         final Event event = new org.logstash.Event(generateData(sourceField));
+        event.setField(org.logstash.Event.METADATA, generateMetadata());
         final TestMatchListener matchListener = new TestMatchListener();
 
         final Collection<Event> results = filter.filter(Collections.singletonList(event), matchListener);
@@ -34,6 +35,13 @@ public class JavaFilterHueTest {
 
         // Original timestamp is kept
         Assert.assertTrue(results.stream().allMatch(e -> e.getEventTimestamp().equals(event.getEventTimestamp())));
+
+        // Original metadata are kept
+        Assert.assertTrue(
+                results.stream().allMatch(
+                        e -> event.getMetadata().entrySet().stream().allMatch(
+                                m -> e.getMetadata().get(m.getKey()).equals(m.getValue())))
+        );
     }
 
     private Map<String, Object> generateData(String sourceField) {
@@ -56,6 +64,12 @@ public class JavaFilterHueTest {
         foo.put("5", data5);
         data.put(sourceField, foo);
         return data;
+    }
+
+    private Map<String, Object> generateMetadata() {
+        final Map<String, Object> metadata = new HashMap<>();
+        metadata.put("id", "test");
+        return metadata;
     }
 }
 
