@@ -2,7 +2,6 @@ package org.logstash.javaapi;
 
 import co.elastic.logstash.api.*;
 
-import java.time.Instant;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -28,11 +27,7 @@ public class JavaFilterHue implements Filter {
     public Collection<Event> filter(Collection<Event> events, FilterMatchListener matchListener) {
 
         return events.stream()
-                .flatMap(e -> generateLightEvents(
-                        e.getEventTimestamp(),
-                        (Map<String, Map<String, Object>>) e.getField(sourceField),
-                        matchListener
-                ).stream())
+                .flatMap(e -> generateLightEvents(e, matchListener).stream())
                 .collect(Collectors.toSet());
     }
 
@@ -47,23 +42,16 @@ public class JavaFilterHue implements Filter {
         return this.id;
     }
 
-    private Collection<Event> generateLightEvents(
-            Instant originalTimestamp,
-            Map<String, Map<String, Object>> lights,
-            FilterMatchListener matchListener
-    ) {
-        return lights.values().stream()
-                .map(l -> generateLightEvent(originalTimestamp, l, matchListener))
+    private Collection<Event> generateLightEvents(Event event, FilterMatchListener matchListener) {
+        return ((Map<String, Map<String, Object>>) event.getField(sourceField)).values().stream()
+                .map(l -> generateLightEvent(event, l, matchListener))
                 .collect(Collectors.toSet());
     }
 
-    private Event generateLightEvent(
-            Instant originalTimestamp,
-            Map<String, Object> light,
-            FilterMatchListener matchListener
-    ) {
+    private Event generateLightEvent(Event event, Map<String, Object> light, FilterMatchListener matchListener) {
         final org.logstash.Event lightEvent = new org.logstash.Event(light);
-        lightEvent.setEventTimestamp(originalTimestamp);
+        lightEvent.setEventTimestamp(event.getEventTimestamp());
+        lightEvent.setField(org.logstash.Event.METADATA, event.getMetadata());
         matchListener.filterMatched(lightEvent);
         return lightEvent;
     }
