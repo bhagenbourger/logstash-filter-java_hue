@@ -2,6 +2,7 @@ package org.logstashplugins;
 
 import co.elastic.logstash.api.*;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -27,9 +28,11 @@ public class JavaFilterHue implements Filter {
     public Collection<Event> filter(Collection<Event> events, FilterMatchListener matchListener) {
 
         return events.stream()
-                .map(e -> (Map<String, Object>) e.getField(sourceField))
-                .flatMap(m -> m.values().stream())
-                .map(m -> getEvent((Map<String, Object>) m, matchListener))
+                .flatMap(e -> generateLightEvents(
+                        e.getEventTimestamp(),
+                        (Map<String, Map<String, Object>>) e.getField(sourceField),
+                        matchListener
+                ).stream())
                 .collect(Collectors.toSet());
     }
 
@@ -44,9 +47,24 @@ public class JavaFilterHue implements Filter {
         return this.id;
     }
 
-    private org.logstash.Event getEvent(Map<String, Object> data, FilterMatchListener matchListener) {
-        final org.logstash.Event event = new org.logstash.Event(data);
-        matchListener.filterMatched(event);
-        return event;
+    private Collection<Event> generateLightEvents(
+            Instant originalTimestamp,
+            Map<String, Map<String, Object>> lights,
+            FilterMatchListener matchListener
+    ) {
+        return lights.values().stream()
+                .map(l -> generateLightEvent(originalTimestamp, l, matchListener))
+                .collect(Collectors.toSet());
+    }
+
+    private Event generateLightEvent(
+            Instant originalTimestamp,
+            Map<String, Object> light,
+            FilterMatchListener matchListener
+    ) {
+        final org.logstash.Event lightEvent = new org.logstash.Event(light);
+        lightEvent.setEventTimestamp(originalTimestamp);
+        matchListener.filterMatched(lightEvent);
+        return lightEvent;
     }
 }
