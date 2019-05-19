@@ -1,23 +1,18 @@
 package org.logstash.javaapi;
 
-import co.elastic.logstash.api.Configuration;
-import co.elastic.logstash.api.Context;
-import co.elastic.logstash.api.Event;
-import co.elastic.logstash.api.Filter;
-import co.elastic.logstash.api.FilterMatchListener;
-import co.elastic.logstash.api.LogstashPlugin;
-import co.elastic.logstash.api.PluginConfigSpec;
-import org.apache.commons.lang3.StringUtils;
+import co.elastic.logstash.api.*;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 // class name must match plugin name
 @LogstashPlugin(name = "java_filter_hue")
 public class JavaFilterHue implements Filter {
 
-    public static final PluginConfigSpec<String> SOURCE_CONFIG =
-            PluginConfigSpec.stringSetting("source", "message");
+    private static final PluginConfigSpec<String> SOURCE_CONFIG =
+            PluginConfigSpec.stringSetting("lights", "lights");
 
     private String id;
     private String sourceField;
@@ -30,14 +25,12 @@ public class JavaFilterHue implements Filter {
 
     @Override
     public Collection<Event> filter(Collection<Event> events, FilterMatchListener matchListener) {
-        for (Event e : events) {
-            Object f = e.getField(sourceField);
-            if (f instanceof String) {
-                e.setField(sourceField, StringUtils.reverse((String)f));
-                matchListener.filterMatched(e);
-            }
-        }
-        return events;
+
+        return events.stream()
+                .map(e -> (Map<String, Object>) e.getField(sourceField))
+                .flatMap(m -> m.values().stream())
+                .map(m -> getEvent((Map<String, Object>) m, matchListener))
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -49,5 +42,11 @@ public class JavaFilterHue implements Filter {
     @Override
     public String getId() {
         return this.id;
+    }
+
+    private org.logstash.Event getEvent(Map<String, Object> data, FilterMatchListener matchListener) {
+        final org.logstash.Event event = new org.logstash.Event(data);
+        matchListener.filterMatched(event);
+        return event;
     }
 }
