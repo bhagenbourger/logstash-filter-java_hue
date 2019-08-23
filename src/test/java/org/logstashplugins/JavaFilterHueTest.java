@@ -21,7 +21,7 @@ public class JavaFilterHueTest {
     public void shouldSplitEachLightInEvent() {
         final String sourceField = "lights";
         final Configuration config = new ConfigurationImpl(Collections.singletonMap("source", sourceField));
-        final Context context = new ContextImpl(null);
+        final Context context = new ContextImpl(null, null);
         final JavaFilterHue filter = new JavaFilterHue("test-id", config, context);
         final Event event = new org.logstash.Event(generateData(sourceField));
         event.setField(org.logstash.Event.METADATA, generateMetadata());
