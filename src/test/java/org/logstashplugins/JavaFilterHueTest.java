@@ -4,11 +4,16 @@ import co.elastic.logstash.api.Configuration;
 import co.elastic.logstash.api.Context;
 import co.elastic.logstash.api.Event;
 import co.elastic.logstash.api.FilterMatchListener;
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.logstash.plugins.ConfigurationImpl;
 import org.logstash.plugins.ContextImpl;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,17 +22,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class JavaFilterHueTest {
 
+    private static final String DATA_FILE = "data.json";
+
     @Test
-    public void shouldSplitEachLightInEvent() {
+    public void shouldSplitEachLightInEvent() throws IOException {
         final String sourceField = "lights";
         final Configuration config = new ConfigurationImpl(Collections.singletonMap("source", sourceField));
         final Context context = new ContextImpl(null, null);
         final JavaFilterHue filter = new JavaFilterHue("test-id", config, context);
-        final Event event = new org.logstash.Event(generateData(sourceField));
-        event.setField(org.logstash.Event.METADATA, generateMetadata());
+        final Event event = generateEvent();
         final TestMatchListener matchListener = new TestMatchListener();
 
-        final Collection<Event> results = filter.filter(Collections.singletonList(event), matchListener);
+        final Collection<Event> results = filter.filter(Collections.singleton(event), matchListener);
 
         // Lights are split into several events
         Assert.assertEquals(5, results.size());
@@ -44,32 +50,42 @@ public class JavaFilterHueTest {
         );
     }
 
-    private Map<String, Object> generateData(String sourceField) {
-        final Map<String, Object> data = new HashMap<>();
-        final Map<String, Object> foo = new HashMap<>();
-        final Map<String, Object> data1 = new HashMap<>();
-        data1.put("capabilities", "test1");
-        final Map<String, Object> data2 = new HashMap<>();
-        data2.put("capabilities", "test2");
-        final Map<String, Object> data3 = new HashMap<>();
-        data3.put("capabilities", "test3");
-        final Map<String, Object> data4 = new HashMap<>();
-        data4.put("capabilities", "test4");
-        final Map<String, Object> data5 = new HashMap<>();
-        data5.put("capabilities", "test5");
-        foo.put("1", data1);
-        foo.put("2", data2);
-        foo.put("3", data3);
-        foo.put("4", data4);
-        foo.put("5", data5);
-        data.put(sourceField, foo);
-        return data;
+    private Event generateEvent() throws IOException {
+        final org.logstash.Event event = new org.logstash.Event(jsonToMap(getJsonData(getDataFile())));
+        event.setField(org.logstash.Event.METADATA, generateMetadata());
+        return event;
     }
 
-    private Map<String, Object> generateMetadata() {
+    private String getDataFile() {
+        return getClass().getClassLoader().getResource(DATA_FILE).getFile();
+    }
+
+    private static String getJsonData(String dataFile) throws IOException {
+        final FileReader fileReader = new FileReader(dataFile);
+        final BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        final StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            stringBuilder.append(line);
+        }
+
+        bufferedReader.close();
+        fileReader.close();
+
+
+        return stringBuilder.toString();
+    }
+
+    private static Map<String, Object> generateMetadata() {
         final Map<String, Object> metadata = new HashMap<>();
         metadata.put("id", "test");
         return metadata;
+    }
+
+    private static Map<? extends Serializable, Object> jsonToMap(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, Map.class);
     }
 }
 

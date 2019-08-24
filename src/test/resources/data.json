@@ -1,0 +1,544 @@
+{
+  "lights": {
+    "1": {
+      "state": {
+        "on": false,
+        "bri": 254,
+        "hue": 52349,
+        "sat": 21,
+        "effect": "none",
+        "xy": [
+          0.3743,
+          0.3557
+        ],
+        "ct": 239,
+        "alert": "none",
+        "colormode": "xy",
+        "mode": "homeautomation",
+        "reachable": true
+      },
+      "swupdate": {
+        "state": "noupdates",
+        "lastinstall": "2018-12-17T22:46:21"
+      },
+      "type": "Extended color light",
+      "name": "Test 1",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "productname": "Hue go",
+      "capabilities": {
+        "certified": true,
+        "control": {
+          "mindimlevel": 40,
+          "maxlumen": 300,
+          "colorgamuttype": "C",
+          "colorgamut": [
+            [
+              0.6915,
+              0.3083
+            ],
+            [
+              0.1700,
+              0.7000
+            ],
+            [
+              0.1532,
+              0.0475
+            ]
+          ],
+          "ct": {
+            "min": 153,
+            "max": 500
+          }
+        },
+        "streaming": {
+          "renderer": true,
+          "proxy": true
+        }
+      },
+      "config": {
+        "archetype": "huego",
+        "function": "decorative",
+        "direction": "omnidirectional",
+        "startup": {
+          "mode": "safety",
+          "configured": true
+        }
+      },
+      "uniqueid": "",
+      "swversion": ""
+    },
+    "2": {
+      "state": {
+        "on": false,
+        "bri": 254,
+        "hue": 52349,
+        "sat": 21,
+        "effect": "none",
+        "xy": [
+          0.3743,
+          0.3557
+        ],
+        "ct": 239,
+        "alert": "lselect",
+        "colormode": "xy",
+        "mode": "homeautomation",
+        "reachable": true
+      },
+      "swupdate": {
+        "state": "noupdates",
+        "lastinstall": "2018-12-17T22:46:29"
+      },
+      "type": "Extended color light",
+      "name": "Test 2",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "productname": "Hue color lamp",
+      "capabilities": {
+        "certified": true,
+        "control": {
+          "mindimlevel": 1000,
+          "maxlumen": 806,
+          "colorgamuttype": "C",
+          "colorgamut": [
+            [
+              0.6915,
+              0.3083
+            ],
+            [
+              0.1700,
+              0.7000
+            ],
+            [
+              0.1532,
+              0.0475
+            ]
+          ],
+          "ct": {
+            "min": 153,
+            "max": 500
+          }
+        },
+        "streaming": {
+          "renderer": true,
+          "proxy": true
+        }
+      },
+      "config": {
+        "archetype": "sultanbulb",
+        "function": "mixed",
+        "direction": "omnidirectional",
+        "startup": {
+          "mode": "safety",
+          "configured": true
+        }
+      },
+      "uniqueid": "",
+      "swversion": "",
+      "swconfigid": "",
+      "productid": ""
+    },
+    "3": {
+      "state": {
+        "on": false,
+        "bri": 144,
+        "ct": 443,
+        "alert": "none",
+        "colormode": "ct",
+        "mode": "homeautomation",
+        "reachable": true
+      },
+      "swupdate": {
+        "state": "noupdates",
+        "lastinstall": "2018-12-17T22:45:54"
+      },
+      "type": "Color temperature light",
+      "name": "Test 3",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "productname": "Hue ambiance lamp",
+      "capabilities": {
+        "certified": true,
+        "control": {
+          "mindimlevel": 1000,
+          "maxlumen": 806,
+          "ct": {
+            "min": 153,
+            "max": 454
+          }
+        },
+        "streaming": {
+          "renderer": false,
+          "proxy": false
+        }
+      },
+      "config": {
+        "archetype": "sultanbulb",
+        "function": "functional",
+        "direction": "omnidirectional",
+        "startup": {
+          "mode": "safety",
+          "configured": true
+        }
+      },
+      "uniqueid": "",
+      "swversion": ""
+    },
+    "4": {
+      "state": {
+        "on": false,
+        "bri": 254,
+        "ct": 366,
+        "alert": "none",
+        "colormode": "ct",
+        "mode": "homeautomation",
+        "reachable": true
+      },
+      "swupdate": {
+        "state": "noupdates",
+        "lastinstall": "2018-12-17T22:46:27"
+      },
+      "type": "Color temperature light",
+      "name": "Test 4",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "productname": "Hue ambiance lamp",
+      "capabilities": {
+        "certified": true,
+        "control": {
+          "mindimlevel": 1000,
+          "maxlumen": 806,
+          "ct": {
+            "min": 153,
+            "max": 454
+          }
+        },
+        "streaming": {
+          "renderer": false,
+          "proxy": false
+        }
+      },
+      "config": {
+        "archetype": "sultanbulb",
+        "function": "functional",
+        "direction": "omnidirectional",
+        "startup": {
+          "mode": "safety",
+          "configured": true
+        }
+      },
+      "uniqueid": "",
+      "swversion": ""
+    },
+    "5": {
+      "state": {
+        "on": false,
+        "bri": 126,
+        "alert": "none",
+        "mode": "homeautomation",
+        "reachable": true
+      },
+      "swupdate": {
+        "state": "noupdates",
+        "lastinstall": "2018-12-17T22:46:23"
+      },
+      "type": "Dimmable light",
+      "name": "Test 5",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "productname": "Hue white lamp",
+      "capabilities": {
+        "certified": true,
+        "control": {
+          "mindimlevel": 2000,
+          "maxlumen": 800
+        },
+        "streaming": {
+          "renderer": false,
+          "proxy": false
+        }
+      },
+      "config": {
+        "archetype": "classicbulb",
+        "function": "functional",
+        "direction": "omnidirectional",
+        "startup": {
+          "mode": "safety",
+          "configured": true
+        }
+      },
+      "uniqueid": "",
+      "swversion": ""
+    }
+  },
+  "groups": {
+  },
+  "config": {
+    "name": "",
+    "zigbeechannel": 11,
+    "bridgeid": "",
+    "mac": "",
+    "dhcp": true,
+    "ipaddress": "",
+    "netmask": "",
+    "gateway": "",
+    "proxyaddress": "",
+    "proxyport": 0,
+    "UTC": "2019-08-23T17:23:39",
+    "localtime": "2019-08-23T19:23:39",
+    "timezone": "Europe/Paris",
+    "modelid": "",
+    "datastoreversion": "",
+    "swversion": "",
+    "apiversion": "",
+    "swupdate": {
+      "updatestate": 2,
+      "checkforupdate": false,
+      "devicetypes": {
+        "bridge": true,
+        "lights": [
+        ],
+        "sensors": [
+        ]
+      },
+      "url": "",
+      "text": "",
+      "notify": true
+    },
+    "swupdate2": {
+      "checkforupdate": false,
+      "lastchange": "",
+      "bridge": {
+        "state": "",
+        "lastinstall": ""
+      },
+      "state": "",
+      "autoinstall": {
+        "updatetime": "",
+        "on": false
+      }
+    },
+    "linkbutton": false,
+    "portalservices": true,
+    "portalconnection": "",
+    "portalstate": {
+      "signedon": true,
+      "incoming": false,
+      "outgoing": true,
+      "communication": ""
+    },
+    "internetservices": {
+      "internet": "",
+      "remoteaccess": "",
+      "time": "",
+      "swupdate": ""
+    },
+    "factorynew": false,
+    "replacesbridgeid": null,
+    "backup": {
+      "status": "",
+      "errorcode": 0
+    },
+    "starterkitid": "",
+    "whitelist": {
+    }
+  },
+  "schedules": {
+  },
+  "scenes": {
+  },
+  "rules": {
+  },
+  "sensors": {
+    "1": {
+      "state": {
+        "daylight": null,
+        "lastupdated": "none"
+      },
+      "config": {
+        "on": true,
+        "configured": false,
+        "sunriseoffset": 30,
+        "sunsetoffset": -30
+      },
+      "name": "Daylight",
+      "type": "Daylight",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "swversion": "1.0"
+    },
+    "2": {
+      "state": {
+        "status": 0,
+        "lastupdated": "2019-08-22T21:14:23"
+      },
+      "config": {
+        "on": true,
+        "reachable": true
+      },
+      "name": "Dimmer Switch 2 SceneCycle",
+      "type": "CLIPGenericStatus",
+      "modelid": "",
+      "manufacturername": "",
+      "swversion": "",
+      "uniqueid": "",
+      "recycle": true
+    },
+    "3": {
+      "state": {
+        "buttonevent": 4000,
+        "lastupdated": "2019-08-22T21:14:46"
+      },
+      "swupdate": {
+        "state": "noupdates",
+        "lastinstall": null
+      },
+      "config": {
+        "on": true,
+        "battery": 100,
+        "reachable": true,
+        "pending": [
+        ]
+      },
+      "name": "Sensor 3",
+      "type": "ZLLSwitch",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "productname": "Hue dimmer switch",
+      "diversityid": "",
+      "swversion": "",
+      "uniqueid": "",
+      "capabilities": {
+        "certified": true,
+        "primary": true,
+        "inputs": [
+          {
+            "repeatintervals": [
+              800
+            ],
+            "events": [
+              {
+                "buttonevent": 1000,
+                "eventtype": "initial_press"
+              },
+              {
+                "buttonevent": 1001,
+                "eventtype": "repeat"
+              },
+              {
+                "buttonevent": 1002,
+                "eventtype": "short_release"
+              },
+              {
+                "buttonevent": 1003,
+                "eventtype": "long_release"
+              }
+            ]
+          },
+          {
+            "repeatintervals": [
+              800
+            ],
+            "events": [
+              {
+                "buttonevent": 2000,
+                "eventtype": "initial_press"
+              },
+              {
+                "buttonevent": 2001,
+                "eventtype": "repeat"
+              },
+              {
+                "buttonevent": 2002,
+                "eventtype": "short_release"
+              },
+              {
+                "buttonevent": 2003,
+                "eventtype": "long_release"
+              }
+            ]
+          },
+          {
+            "repeatintervals": [
+              800
+            ],
+            "events": [
+              {
+                "buttonevent": 3000,
+                "eventtype": "initial_press"
+              },
+              {
+                "buttonevent": 3001,
+                "eventtype": "repeat"
+              },
+              {
+                "buttonevent": 3002,
+                "eventtype": "short_release"
+              },
+              {
+                "buttonevent": 3003,
+                "eventtype": "long_release"
+              }
+            ]
+          },
+          {
+            "repeatintervals": [
+              800
+            ],
+            "events": [
+              {
+                "buttonevent": 4000,
+                "eventtype": "initial_press"
+              },
+              {
+                "buttonevent": 4001,
+                "eventtype": "repeat"
+              },
+              {
+                "buttonevent": 4002,
+                "eventtype": "short_release"
+              },
+              {
+                "buttonevent": 4003,
+                "eventtype": "long_release"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "4": {
+      "state": {
+        "temperature": 2281,
+        "lastupdated": "2019-08-23T17:18:44"
+      },
+      "swupdate": {
+        "state": "noupdates",
+        "lastinstall": "2019-03-16T23:19:20"
+      },
+      "config": {
+        "on": true,
+        "battery": 100,
+        "reachable": true,
+        "alert": "none",
+        "ledindication": false,
+        "usertest": false,
+        "pending": [
+        ]
+      },
+      "name": "Hue temperature sensor 1",
+      "type": "ZLLTemperature",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "productname": "Hue temperature sensor",
+      "swversion": "",
+      "uniqueid": "",
+      "capabilities": {
+        "certified": true,
+        "primary": false
+      }
+    }
+  },
+  "resourcelinks": {
+  }
+}

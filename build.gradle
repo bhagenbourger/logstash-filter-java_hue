@@ -56,6 +56,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.jruby:jruby-complete:9.2.7.0'
+    testCompile 'com.google.code.gson:gson:2.8.5'
 }
 
 clean {
