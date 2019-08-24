@@ -350,6 +350,37 @@
   "rules": {
   },
   "sensors": {
+    "0": {
+      "state": {
+        "temperature": 2281,
+        "lastupdated": "2019-08-23T17:18:44"
+      },
+      "swupdate": {
+        "state": "noupdates",
+        "lastinstall": "2019-03-16T23:19:20"
+      },
+      "config": {
+        "on": true,
+        "battery": 100,
+        "reachable": true,
+        "alert": "none",
+        "ledindication": false,
+        "usertest": false,
+        "pending": [
+        ]
+      },
+      "name": "Hue temperature sensor 0",
+      "type": "ZLLTemperature",
+      "modelid": "",
+      "manufacturername": "Philips",
+      "productname": "Hue temperature sensor",
+      "swversion": "",
+      "uniqueid": "",
+      "capabilities": {
+        "certified": true,
+        "primary": false
+      }
+    },
     "1": {
       "state": {
         "daylight": null,
